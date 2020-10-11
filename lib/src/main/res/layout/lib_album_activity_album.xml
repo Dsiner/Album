@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lib_album_color_primary">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/lib_album_dimen_title_height"
+        android:layout_marginBottom="@dimen/lib_album_dimen_title_height" />
+
+    <com.d.lib.album.widget.AlbumBottomBar
+        android:id="@+id/album_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/lib_album_color_primary" />
+
+    <com.d.lib.album.widget.AlbumTitleBar
+        android:id="@+id/album_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

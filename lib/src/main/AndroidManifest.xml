@@ -1,2 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.d.lib.album" />
+    package="com.d.lib.album">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application>
+        <provider
+            android:name=".util.FileProviderCompat"
+            android:authorities="${applicationId}.lib.album.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/lib_album_provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".activity.CaptureActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@style/lib_album_Transparent" />
+        <activity
+            android:name=".activity.AlbumActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/lib_album_AppTheme" />
+        <activity
+            android:name=".activity.AlbumPreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/lib_album_AppTheme" />
+        <activity
+            android:name=".activity.AlbumEditActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/lib_album_Black" />
+        <activity
+            android:name=".activity.PhotoPreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/lib_album_Black" />
+    </application>
+</manifest>

@@ -1,0 +1,2 @@
+-keep class com.d.lib.album.** {*;}
+-keep interface com.d.lib.album.** {*;}

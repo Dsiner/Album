@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/lib_album_dimen_title_height"
+        android:background="@color/lib_album_color_primary">
+
+        <ImageView
+            android:id="@+id/iv_title_left"
+            android:layout_width="@dimen/lib_album_dimen_title_height"
+            android:layout_height="@dimen/lib_album_dimen_title_height"
+            android:layout_gravity="center_vertical"
+            android:padding="12dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lib_album_ic_title_back" />
+
+        <LinearLayout
+            android:id="@+id/llyt_title_title_root"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/lib_album_dimen_title_height"
+            android:background="@drawable/lib_album_corner_choose">
+
+            <TextView
+                android:id="@+id/tv_title_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/lib_album_dimen_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:text="@string/lib_album_all"
+                android:textColor="@color/lib_album_color_text"
+                android:textSize="@dimen/lib_album_dimen_text_sub" />
+
+            <ImageView
+                android:id="@+id/iv_title_title"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="3dp"
+                android:padding="5dp"
+                android:rotation="270"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lib_album_ic_title_back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginLeft="115dp"
+            android:layout_marginRight="@dimen/lib_album_dimen_margin"
+            android:background="@drawable/lib_album_corner_btn_main_disable"
+            android:gravity="center"
+            android:paddingLeft="@dimen/lib_album_dimen_padding"
+            android:paddingTop="4dp"
+            android:paddingRight="@dimen/lib_album_dimen_padding"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@string/lib_album_send"
+            android:textColor="@color/lib_album_color_text"
+            android:textSize="@dimen/lib_album_dimen_text_sub" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flyt_album_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lib_album_color_translucent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_album_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="180dp" />
+    </FrameLayout>
+</LinearLayout>

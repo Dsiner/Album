@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="lib_album_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/lib_album_color_primary</item>
+        <item name="colorPrimaryDark">@color/lib_album_color_primary</item>
+        <item name="colorAccent">@color/lib_album_color_accent</item>
+    </style>
+
+    <style name="lib_album_Black" parent="lib_album_AppTheme">
+        <item name="colorPrimary">@color/lib_album_color_black</item>
+        <item name="colorPrimaryDark">@color/lib_album_color_black</item>
+    </style>
+
+    <style name="lib_album_Transparent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/lib_album_color_trans</item>
+        <!-- Adapt to android8.0(api26), Only fullscreen opaque activities can request orientation -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+</resources>

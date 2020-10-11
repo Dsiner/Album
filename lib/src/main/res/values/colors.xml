@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lib_album_color_primary">#333333</color>
+    <color name="lib_album_color_primary_50">#DD343434</color>
+    <color name="lib_album_color_primary_light">#4C4C4C</color>
+    <color name="lib_album_color_primary_dark">#B2B2B2</color>
+    <color name="lib_album_color_accent">#07C160</color>
+
+    <color name="lib_album_color_text">#FFFFFF</color>
+    <color name="lib_album_color_text_disable">#696969</color>
+
+    <color name="lib_album_color_trans">#00000000</color>
+    <color name="lib_album_color_translucent">#9900040A</color>
+    <color name="lib_album_color_black">#000000</color>
+    <color name="lib_album_color_line">#66E5E5E5</color>
+
+    <color name="lib_album_color_paint_white">#FFFFFF</color>
+    <color name="lib_album_color_paint_black">#000000</color>
+    <color name="lib_album_color_paint_red">#F5330F</color>
+    <color name="lib_album_color_paint_orange">#FFBB48</color>
+    <color name="lib_album_color_paint_green">#03B10A</color>
+    <color name="lib_album_color_paint_blue">#187BFE</color>
+    <color name="lib_album_color_paint_purple">#945AFC</color>
+</resources>

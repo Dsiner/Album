@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_photo_preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Photo Preview" />
+
+    <Button
+        android:id="@+id/btn_photo_capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Capture" />
+
+    <Button
+        android:id="@+id/btn_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Album" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

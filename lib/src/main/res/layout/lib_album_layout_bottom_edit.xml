@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_undo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="@dimen/lib_album_dimen_margin"
+            android:layout_marginBottom="26dp"
+            android:padding="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lib_album_ic_tool_undo" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/lib_album_dimen_title_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_bottom_edit_draw"
+            android:layout_width="@dimen/lib_album_dimen_title_height"
+            android:layout_height="@dimen/lib_album_dimen_title_height"
+            android:layout_marginLeft="@dimen/lib_album_dimen_margin"
+            android:padding="14dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_bottom_edit_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="@dimen/lib_album_dimen_margin"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/lib_album_corner_btn_main_normal"
+            android:gravity="center"
+            android:paddingLeft="@dimen/lib_album_dimen_padding"
+            android:paddingTop="6dp"
+            android:paddingRight="@dimen/lib_album_dimen_padding"
+            android:paddingBottom="6dp"
+            android:text="@string/lib_album_finish"
+            android:textColor="@color/lib_album_color_text"
+            android:textSize="@dimen/lib_album_dimen_text_sub" />
+    </LinearLayout>
+</LinearLayout>

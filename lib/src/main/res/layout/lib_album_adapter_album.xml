@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@color/lib_album_color_primary">
+
+    <com.d.lib.album.widget.SquareFrameLayout
+        android:id="@+id/sqly_album_thumbnail"
+        android:layout_width="55dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_album_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+    </com.d.lib.album.widget.SquareFrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/sqly_album_thumbnail"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/lib_album_dimen_margin">
+
+        <TextView
+            android:id="@+id/tv_album_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lib_album_all"
+            android:textColor="@color/lib_album_color_text"
+            android:textSize="@dimen/lib_album_dimen_text_sub" />
+
+        <TextView
+            android:id="@+id/tv_album_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="(11)"
+            android:textColor="@color/lib_album_color_text_disable"
+            android:textSize="@dimen/lib_album_dimen_text_sub" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/lib_album_dimen_line_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/lib_album_dimen_margin"
+        android:layout_toRightOf="@+id/sqly_album_thumbnail"
+        android:background="@color/lib_album_color_line" />
+</RelativeLayout>
