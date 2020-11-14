@@ -21,10 +21,10 @@ import java.util.List;
  * Created by D on 2017/4/26.
  */
 public class AlbumMediaAdapter extends CommonCursorAdapter {
-    private final SelectList<Media> mSelectList = new SelectList<>();
+    private final SelectList<Media> mSelectList;
     private OnClickListener mOnClickListener;
 
-    public AlbumMediaAdapter(Context context) {
+    public AlbumMediaAdapter(Context context, int maxCount) {
         super(context, new MultiItemTypeSupport<Cursor>() {
             @Override
             public int getItemViewType(int position, Cursor item) {
@@ -36,6 +36,7 @@ public class AlbumMediaAdapter extends CommonCursorAdapter {
                 return R.layout.lib_album_adapter_image;
             }
         });
+        mSelectList = new SelectList<>(maxCount);
     }
 
     public SelectList<Media> getSelected() {
@@ -89,7 +90,8 @@ public class AlbumMediaAdapter extends CommonCursorAdapter {
                 } else {
                     if (!mSelectList.add(media)) {
                         Toast.makeText(mContext,
-                                mContext.getString(R.string.lib_album_choose_limit_tips),
+                                mContext.getString(R.string.lib_album_choose_limit_tips,
+                                        mSelectList.getMaxCount()),
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }

@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.d.lib.album.R;
 import com.d.lib.album.adapter.PhotoPreviewViewPagerAdapter;
@@ -74,9 +75,10 @@ public class PhotoPreviewActivity extends FragmentActivity
     }
 
     private void setAdapter(PagerAdapter adapter) {
-        mPosition = Math.min(adapter.getCount() - 1, mPosition);
+        final int count = adapter.getCount();
+        mPosition = Math.min(count - 1, mPosition);
         mPosition = Math.max(0, mPosition);
-        mViewPager.setOffscreenPageLimit(Math.min(4, adapter.getCount() - 1));
+        mViewPager.setOffscreenPageLimit(Math.min(4, count - 1));
         mViewPager.removeOnPageChangeListener(this);
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setAdapter(adapter);
@@ -84,8 +86,9 @@ public class PhotoPreviewActivity extends FragmentActivity
         indicator.setIndicatorResources(new int[]{R.drawable.lib_album_indicator,
                 R.drawable.lib_album_indicator_foucus})
                 .setPointPadding(Utils.dp2px(this, 4))
-                .setCount(adapter.getCount())
+                .setCount(count)
                 .setCurrentItem(mPosition);
+        indicator.setVisibility(count > 1 ? View.VISIBLE : View.INVISIBLE);
 
         onPageSelected(mPosition);
     }

@@ -20,6 +20,7 @@ import com.d.lib.album.adapter.AlbumPreviewSelectedAdapter;
 import com.d.lib.album.adapter.AlbumPreviewViewPagerAdapter;
 import com.d.lib.album.model.Album;
 import com.d.lib.album.model.Media;
+import com.d.lib.album.model.SelectList;
 import com.d.lib.album.mvp.ILoadView;
 import com.d.lib.album.mvp.LoadPresenter;
 import com.d.lib.album.widget.AlbumBottomBar;
@@ -43,6 +44,7 @@ public class AlbumPreviewActivity extends FragmentActivity
     public static final String EXTRA_BUNDLE = "EXTRA_BUNDLE";
     public static final String EXTRA_BUNDLE_ORIGIN_ENABLE = "EXTRA_BUNDLE_ORIGIN_ENABLE";
     public static final String EXTRA_BUNDLE_ORIGIN_CHECK = "EXTRA_BUNDLE_ORIGIN_CHECK";
+    public static final String EXTRA_BUNDLE_MAX_COUNT = "EXTRA_BUNDLE_MAX_COUNT";
     public static final String EXTRA_BUNDLE_POSITION = "EXTRA_BUNDLE_POSITION";
     public static final String EXTRA_BUNDLE_ITEM = "EXTRA_BUNDLE_ITEM";
 
@@ -83,11 +85,13 @@ public class AlbumPreviewActivity extends FragmentActivity
 
     public static Bundle getBundle(boolean originEnable,
                                    boolean originChecked,
+                                   int maxCount,
                                    int position,
                                    Media item) {
         Bundle bundle = new Bundle();
         bundle.putBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, originEnable);
         bundle.putBoolean(EXTRA_BUNDLE_ORIGIN_CHECK, originChecked);
+        bundle.putInt(EXTRA_BUNDLE_MAX_COUNT, maxCount);
         bundle.putInt(EXTRA_BUNDLE_POSITION, position);
         bundle.putParcelable(EXTRA_BUNDLE_ITEM, item);
         return bundle;
@@ -190,7 +194,9 @@ public class AlbumPreviewActivity extends FragmentActivity
             }
         });
 
-        mPreviewSelectedAdapter = new AlbumPreviewSelectedAdapter(this, new ArrayList<Media>());
+        mPreviewSelectedAdapter = new AlbumPreviewSelectedAdapter(this,
+                new ArrayList<Media>(),
+                mBundle.getInt(EXTRA_BUNDLE_MAX_COUNT, SelectList.MAX_COUNT));
         mPreviewSelectedAdapter.setOnClickListener(new AlbumPreviewSelectedAdapter.OnClickListener() {
             @Override
             public void onClick(int position, Media item) {

@@ -14,11 +14,15 @@ public class SelectList<E> {
     final int mMaxCount;
 
     public SelectList() {
-        this.mMaxCount = MAX_COUNT;
+        this(MAX_COUNT);
     }
 
-    public SelectList(int maxCount) {
-        this.mMaxCount = maxCount;
+    public SelectList(int count) {
+        this.mMaxCount = count;
+    }
+
+    public int getMaxCount() {
+        return mMaxCount;
     }
 
     public List<E> asList() {

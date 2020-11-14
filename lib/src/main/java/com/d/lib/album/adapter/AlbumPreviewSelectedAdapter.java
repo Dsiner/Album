@@ -26,11 +26,13 @@ public class AlbumPreviewSelectedAdapter extends CommonCheckAdapter<Media> {
     public static final int TYPE_PREVIEW = 1;
 
     private int mType = TYPE_ALBUM;
+    private final int mMaxCount;
     private Media mMedia;
     private OnClickListener mOnClickListener;
 
-    public AlbumPreviewSelectedAdapter(Context context, List<Media> datas) {
+    public AlbumPreviewSelectedAdapter(Context context, List<Media> datas, int maxCount) {
         super(context, datas, R.layout.lib_album_adapter_preview_select);
+        this.mMaxCount = maxCount;
     }
 
     public void setType(int type) {
@@ -63,7 +65,7 @@ public class AlbumPreviewSelectedAdapter extends CommonCheckAdapter<Media> {
             if (check) {
                 if (mDatas.size() >= SelectList.MAX_COUNT) {
                     Toast.makeText(mContext,
-                            mContext.getString(R.string.lib_album_choose_limit_tips),
+                            mContext.getString(R.string.lib_album_choose_limit_tips, mMaxCount),
                             Toast.LENGTH_SHORT)
                             .show();
                     return false;

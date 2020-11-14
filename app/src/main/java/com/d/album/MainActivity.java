@@ -40,10 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_open:
                 Album.with(this)
+                        .maxCount(9)
                         .originEnable(false)
                         .startActivityForResult(REQUEST_CODE_ALBUM);
-
-
         }
     }
 

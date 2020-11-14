@@ -42,7 +42,7 @@ public class DrawAttacher {
     public DrawAttacher(View view) {
         mContext = view.getContext();
         mView = view;
-        mTouchSlop = 0.5f;
+        mTouchSlop = Utils.dp2px(view.getContext(), 1f);
         mStrokeMinWidth = Utils.dp2px(view.getContext(), 1f);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);

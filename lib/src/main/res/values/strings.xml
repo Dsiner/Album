@@ -7,7 +7,7 @@
     <string name="lib_album_origin">原图</string>
     <string name="lib_album_edit">编辑</string>
     <string name="lib_album_choose">选择</string>
-    <string name="lib_album_choose_limit_tips">最多只能选择9张图片哦~</string>
+    <string name="lib_album_choose_limit_tips">最多只能选择%d张图片哦~</string>
     <string name="lib_album_camera_not_available">Camera is not available</string>
     <string name="lib_album_camera_error">Cannot launch camera</string>
 </resources>

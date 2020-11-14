@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.d.lib.album.R;
 import com.d.lib.album.adapter.AlbumAdapter;
 import com.d.lib.album.model.Album;
+import com.d.lib.album.model.SelectList;
 import com.d.lib.album.mvp.ILoadView;
 import com.d.lib.album.mvp.LoadPresenter;
 import com.d.lib.album.util.Utils;
@@ -31,10 +32,10 @@ public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnCli
     public static final int TYPE_ALBUM = 0;
     public static final int TYPE_PREVIEW = 1;
 
-    private final int mMaxCount = 9;
     private Context mContext;
     private View mRootView;
     private int mType;
+    private int mMaxCount = SelectList.MAX_COUNT;
     private TextView tv_title_title, tv_title_right;
     private ImageView iv_title_left, iv_title_title;
     private View llyt_title_title_root, flyt_album_root;
@@ -138,6 +139,10 @@ public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnCli
 
     public void setTitle(CharSequence text) {
         tv_title_title.setText(text);
+    }
+
+    public void setMaxCount(int count) {
+        this.mMaxCount = count;
     }
 
     public void setCount(int count) {

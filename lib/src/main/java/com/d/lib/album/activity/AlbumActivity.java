@@ -9,9 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -19,6 +21,7 @@ import com.d.lib.album.R;
 import com.d.lib.album.adapter.AlbumMediaAdapter;
 import com.d.lib.album.model.Album;
 import com.d.lib.album.model.Media;
+import com.d.lib.album.model.SelectList;
 import com.d.lib.album.util.CachePool;
 import com.d.lib.album.util.IntentUtils;
 import com.d.lib.album.util.PermissionsChecker;
@@ -46,6 +49,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
 
     public static final String EXTRA_BUNDLE = "EXTRA_BUNDLE";
     public static final String EXTRA_BUNDLE_ORIGIN_ENABLE = "EXTRA_BUNDLE_ORIGIN_ENABLE";
+    public static final String EXTRA_BUNDLE_MAX_COUNT = "EXTRA_BUNDLE_MAX_COUNT";
 
     private Bundle mBundle;
     private AlbumTitleBar album_title;
@@ -67,6 +71,19 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         activity.startActivityForResult(intent, requestCode);
+    }
+
+    public static void openActivityForResult(Fragment fragment,
+                                             int requestCode,
+                                             @Nullable Bundle... bundle) {
+        if (fragment == null || fragment.getActivity() == null) {
+            return;
+        }
+        Intent intent = new Intent(fragment.getActivity(), AlbumActivity.class);
+        if (bundle != null) {
+            intent.putExtra(EXTRA_BUNDLE, bundle[0]);
+        }
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     @NonNull
@@ -122,6 +139,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
         Bundle bundle = AlbumPreviewActivity.getBundle(
                 mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, false),
                 album_bottom.isOrigin(),
+                mBundle.getInt(EXTRA_BUNDLE_MAX_COUNT, SelectList.MAX_COUNT),
                 position,
                 item);
         AlbumPreviewActivity.openActivityForResult(AlbumActivity.this,
@@ -161,7 +179,8 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
         GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
         rv_list.setLayoutManager(layoutManager);
 
-        mAdapter = new AlbumMediaAdapter(this);
+        mAdapter = new AlbumMediaAdapter(this,
+                mBundle.getInt(EXTRA_BUNDLE_MAX_COUNT, SelectList.MAX_COUNT));
         mAdapter.setOnClickListener(new AlbumMediaAdapter.OnClickListener() {
             @Override
             public void onCount(int position, Media item, int count) {
@@ -202,12 +221,12 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
     }
 
     private boolean pick(String id, Cursor cursor) {
-        if (false/*TextUtils.equals(Album.ALBUM_ID_ALL, id)
-                && (cursor == null || cursor.getCount() <= 0)*/) {
+        if (TextUtils.equals(Album.ALBUM_ID_ALL, id)
+                && (cursor == null || cursor.getCount() <= 0)) {
             Utils.closeQuietly(cursor);
             startActivityForResult(IntentUtils.getPickIntent(AlbumActivity.this,
                     IntentUtils.MIME_TYPE_IMAGE,
-                    false), REQUEST_CODE_PICK);
+                    true), REQUEST_CODE_PICK);
             return true;
         }
         return false;
