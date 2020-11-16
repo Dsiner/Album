@@ -4,9 +4,9 @@
     <!-- Base application theme. -->
     <style name="lib_album_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/lib_album_color_primary</item>
-        <item name="colorPrimaryDark">@color/lib_album_color_primary</item>
-        <item name="colorAccent">@color/lib_album_color_accent</item>
+        <item name="colorPrimary">@color/lib_album_color_status_bar_main</item>
+        <item name="colorPrimaryDark">@color/lib_album_color_status_bar_main</item>
+        <item name="colorAccent">@color/lib_album_color_status_bar_main</item>
     </style>
 
     <style name="lib_album_Black" parent="lib_album_AppTheme">

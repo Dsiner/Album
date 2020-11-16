@@ -5,5 +5,5 @@
     <solid android:color="@color/lib_album_color_trans" />
     <stroke
         android:width="1.5dp"
-        android:color="@color/lib_album_color_text" />
+        android:color="@color/lib_album_color_white" />
 </shape>

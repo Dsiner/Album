@@ -35,7 +35,7 @@ public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnCli
     private Context mContext;
     private View mRootView;
     private int mType;
-    private int mMaxCount = SelectList.MAX_COUNT;
+    private int mMaxSelectable = SelectList.MAX_COUNT;
     private TextView tv_title_title, tv_title_right;
     private ImageView iv_title_left, iv_title_title;
     private View llyt_title_title_root, flyt_album_root;
@@ -96,11 +96,12 @@ public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnCli
 
             @Override
             public void onClick(Album item) {
-                toggle();
                 if (TextUtils.equals(item.id, mAlbum.id)) {
+                    toggle();
                     return;
                 }
                 onMediaLoad(item);
+                toggle();
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
@@ -141,17 +142,17 @@ public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnCli
         tv_title_title.setText(text);
     }
 
-    public void setMaxCount(int count) {
-        this.mMaxCount = count;
+    public void setMaxSelectable(int count) {
+        this.mMaxSelectable = count;
     }
 
     public void setCount(int count) {
         tv_title_right.setEnabled(count > 0);
         tv_title_right.setClickable(count > 0);
         tv_title_right.setText(count > 0
-                ? getResources().getText(R.string.lib_album_send)
-                + "(" + count + "/" + mMaxCount + ")"
-                : getResources().getText(R.string.lib_album_send));
+                ? getResources().getText(R.string.lib_album_confirm)
+                + "(" + count + "/" + mMaxSelectable + ")"
+                : getResources().getText(R.string.lib_album_confirm));
         tv_title_right.setBackgroundDrawable(ContextCompat.getDrawable(mContext, count > 0
                 ? R.drawable.lib_album_corner_btn_main_normal
                 : R.drawable.lib_album_corner_btn_main_disable));

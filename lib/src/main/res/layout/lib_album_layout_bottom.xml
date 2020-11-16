@@ -13,7 +13,7 @@
         android:paddingLeft="@dimen/lib_album_dimen_margin"
         android:paddingRight="@dimen/lib_album_dimen_margin"
         android:text="@string/lib_album_preview"
-        android:textColor="@color/lib_album_color_text"
+        android:textColor="@color/lib_album_color_text_bottom"
         android:textSize="@dimen/lib_album_dimen_text_sub" />
 
     <LinearLayout
@@ -49,7 +49,7 @@
             android:gravity="center"
             android:paddingRight="@dimen/lib_album_dimen_margin"
             android:text="@string/lib_album_origin"
-            android:textColor="@color/lib_album_color_text"
+            android:textColor="@color/lib_album_color_text_bottom"
             android:textSize="@dimen/lib_album_dimen_text_sub" />
     </LinearLayout>
 
@@ -86,7 +86,7 @@
             android:gravity="center"
             android:paddingRight="@dimen/lib_album_dimen_margin"
             android:text="@string/lib_album_choose"
-            android:textColor="@color/lib_album_color_text"
+            android:textColor="@color/lib_album_color_text_bottom"
             android:textSize="@dimen/lib_album_dimen_text_sub" />
     </LinearLayout>
 </LinearLayout>

@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/lib_album_dimen_title_height"
-        android:background="@color/lib_album_color_primary">
+        android:background="@color/lib_album_color_title_bar">
 
         <ImageView
             android:id="@+id/iv_title_left"
@@ -65,7 +65,7 @@
             android:paddingRight="@dimen/lib_album_dimen_padding"
             android:paddingBottom="4dp"
             android:singleLine="true"
-            android:text="@string/lib_album_send"
+            android:text="@string/lib_album_confirm"
             android:textColor="@color/lib_album_color_text"
             android:textSize="@dimen/lib_album_dimen_text_sub" />
     </FrameLayout>

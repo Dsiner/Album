@@ -24,7 +24,7 @@ public class AlbumMediaAdapter extends CommonCursorAdapter {
     private final SelectList<Media> mSelectList;
     private OnClickListener mOnClickListener;
 
-    public AlbumMediaAdapter(Context context, int maxCount) {
+    public AlbumMediaAdapter(Context context, int maxSelectable) {
         super(context, new MultiItemTypeSupport<Cursor>() {
             @Override
             public int getItemViewType(int position, Cursor item) {
@@ -36,7 +36,7 @@ public class AlbumMediaAdapter extends CommonCursorAdapter {
                 return R.layout.lib_album_adapter_image;
             }
         });
-        mSelectList = new SelectList<>(maxCount);
+        mSelectList = new SelectList<>(maxSelectable);
     }
 
     public SelectList<Media> getSelected() {

@@ -49,7 +49,8 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
 
     public static final String EXTRA_BUNDLE = "EXTRA_BUNDLE";
     public static final String EXTRA_BUNDLE_ORIGIN_ENABLE = "EXTRA_BUNDLE_ORIGIN_ENABLE";
-    public static final String EXTRA_BUNDLE_MAX_COUNT = "EXTRA_BUNDLE_MAX_COUNT";
+    public static final String EXTRA_BUNDLE_MAX_SELECTABLE = "EXTRA_BUNDLE_MAX_SELECTABLE";
+    public static final String EXTRA_BUNDLE_SPAN_COUNT = "EXTRA_BUNDLE_SPAN_COUNT";
 
     private Bundle mBundle;
     private AlbumTitleBar album_title;
@@ -108,7 +109,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
         Intent intent = new Intent();
         intent.putParcelableArrayListExtra(EXTRA_RESULT_SELECTS, new ArrayList<>(list));
         Bundle bundle = new Bundle();
-        bundle.putBoolean(EXTRA_RESULT_ORIGIN, album_bottom.isOrigin());
+        bundle.putBoolean(EXTRA_RESULT_ORIGIN, album_bottom.isOriginChecked());
         return intent;
     }
 
@@ -138,8 +139,8 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
     private void preview(Album album, int position, Media item) {
         Bundle bundle = AlbumPreviewActivity.getBundle(
                 mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, false),
-                album_bottom.isOrigin(),
-                mBundle.getInt(EXTRA_BUNDLE_MAX_COUNT, SelectList.MAX_COUNT),
+                album_bottom.isOriginChecked(),
+                mBundle.getInt(EXTRA_BUNDLE_MAX_SELECTABLE, SelectList.MAX_COUNT),
                 position,
                 item);
         AlbumPreviewActivity.openActivityForResult(AlbumActivity.this,
@@ -170,17 +171,22 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
     private void init() {
         mBundle = getIntent().getBundleExtra(EXTRA_BUNDLE);
         mBundle = mBundle != null ? mBundle : new Bundle();
+        final boolean originEnable = mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, false);
+        final int maxSelectable = mBundle.getInt(EXTRA_BUNDLE_MAX_SELECTABLE,
+                SelectList.MAX_COUNT);
+        final int spanCount = mBundle.getInt(EXTRA_BUNDLE_SPAN_COUNT, 4);
+
         album_title.setType(AlbumTitleBar.TYPE_ALBUM);
+        album_title.setMaxSelectable(maxSelectable);
         album_bottom.setType(AlbumBottomBar.TYPE_ALBUM);
-        album_bottom.setOriginEnable(mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, false));
+        album_bottom.setOriginEnable(originEnable);
         album_title.setCount(0);
         album_bottom.setCount(0);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, spanCount);
         rv_list.setLayoutManager(layoutManager);
 
-        mAdapter = new AlbumMediaAdapter(this,
-                mBundle.getInt(EXTRA_BUNDLE_MAX_COUNT, SelectList.MAX_COUNT));
+        mAdapter = new AlbumMediaAdapter(this, maxSelectable);
         mAdapter.setOnClickListener(new AlbumMediaAdapter.OnClickListener() {
             @Override
             public void onCount(int position, Media item, int count) {
@@ -294,7 +300,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
         mAdapter.setSelected(list);
         album_title.setCount(list.size());
         album_bottom.setCount(list.size());
-        album_bottom.setOrigin(isOrigin);
+        album_bottom.setOriginChecked(isOrigin);
     }
 
     @Override

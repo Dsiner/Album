@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="lib_album_all">图片和视频</string>
-    <string name="lib_album_send">发送</string>
+    <string name="lib_album_all">全部图片</string>
+    <string name="lib_album_confirm">确定</string>
     <string name="lib_album_finish">完成</string>
     <string name="lib_album_preview">预览</string>
     <string name="lib_album_origin">原图</string>

@@ -1,6 +1,7 @@
 package com.d.lib.album;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -18,21 +19,66 @@ public class Album {
         this.mFrom = from;
     }
 
+    /**
+     * Start from an Activity.
+     * <p>
+     * This Activity's {@link Activity#onActivityResult(int, int, Intent)} will be called when user
+     * finishes selecting.
+     *
+     * @param activity Activity instance.
+     * @return Instance.
+     */
     public static Album with(Activity activity) {
         return new Album(activity);
     }
 
+    /**
+     * Start from a Fragment.
+     * <p>
+     * This Fragment's {@link Fragment#onActivityResult(int, int, Intent)} will be called when user
+     * finishes selecting.
+     *
+     * @param fragment Fragment instance.
+     * @return Instance.
+     */
     public static Album with(Fragment fragment) {
         return new Album(fragment);
     }
 
+    /**
+     * Sets the number of spans to be laid out.
+     *
+     * @param spanCount The total number of spans in the grid
+     * @return {@link Album} for fluent API.
+     */
+    public Album spanCount(int spanCount) {
+        if (spanCount < 1) {
+            throw new IllegalArgumentException("Span count should be at least 1. Provided "
+                    + spanCount);
+        }
+        mBundle.putInt(AlbumActivity.EXTRA_BUNDLE_SPAN_COUNT, spanCount);
+        return this;
+    }
+
+    /**
+     * Show a original photo check options.Let users decide whether use original photo after select
+     *
+     * @param enable Whether to enable original photo or not
+     * @return {@link Album} for fluent API.
+     */
     public Album originEnable(boolean enable) {
         mBundle.putBoolean(AlbumActivity.EXTRA_BUNDLE_ORIGIN_ENABLE, enable);
         return this;
     }
 
-    public Album maxCount(int count) {
-        mBundle.putInt(AlbumActivity.EXTRA_BUNDLE_MAX_COUNT, count);
+    /**
+     * Maximum selectable count.
+     *
+     * @param count Maximum selectable count. Default value is 9.
+     * @return {@link Album} for fluent API.
+     */
+    public Album maxSelectable(int count) {
+        mBundle.putInt(AlbumActivity.EXTRA_BUNDLE_MAX_SELECTABLE, count);
         return this;
     }
 

@@ -106,10 +106,6 @@ public class AlbumBottomBar extends LinearLayout implements View.OnClickListener
         mType = type;
     }
 
-    public void setOriginEnable(boolean enable) {
-        llyt_bottom_origin.setVisibility(enable ? VISIBLE : GONE);
-    }
-
     public void setCount(int count) {
         if (TYPE_ALBUM == mType) {
             tv_bottom_edit.setEnabled(count > 0);
@@ -118,16 +114,20 @@ public class AlbumBottomBar extends LinearLayout implements View.OnClickListener
                     ? getResources().getText(R.string.lib_album_preview) + "(" + count + ")"
                     : getResources().getText(R.string.lib_album_preview));
             tv_bottom_edit.setTextColor(ContextCompat.getColor(mContext, count > 0
-                    ? R.color.lib_album_color_text
-                    : R.color.lib_album_color_text_disable));
+                    ? R.color.lib_album_color_text_bottom
+                    : R.color.lib_album_color_text_bottom_disable));
         }
     }
 
-    public boolean isOrigin() {
+    public void setOriginEnable(boolean enable) {
+        llyt_bottom_origin.setVisibility(enable ? VISIBLE : GONE);
+    }
+
+    public boolean isOriginChecked() {
         return cb_toggle_origin.isChecked();
     }
 
-    public void setOrigin(boolean checked) {
+    public void setOriginChecked(boolean checked) {
         cb_toggle_origin.setChecked(checked);
     }
 

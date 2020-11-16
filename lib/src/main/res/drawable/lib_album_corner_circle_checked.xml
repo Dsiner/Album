@@ -2,5 +2,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval"
     android:useLevel="false">
-    <solid android:color="@color/lib_album_color_accent" />
+    <solid android:color="@color/lib_album_color_main" />
 </shape>

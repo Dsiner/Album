@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Arrays.asList("",
                                 "",
                                 ""),
-                        5);
+                        1);
                 break;
 
             case R.id.btn_photo_capture:
@@ -40,8 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_open:
                 Album.with(this)
-                        .maxCount(9)
-                        .originEnable(false)
+                        .spanCount(4)
+                        .originEnable(true)
+                        .maxSelectable(5)
                         .startActivityForResult(REQUEST_CODE_ALBUM);
         }
     }

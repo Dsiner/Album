@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.d.lib.album.R;
 import com.d.lib.album.model.Media;
-import com.d.lib.album.model.SelectList;
 import com.d.lib.album.util.CachePool;
 
 import java.io.File;
@@ -26,13 +25,14 @@ public class AlbumPreviewSelectedAdapter extends CommonCheckAdapter<Media> {
     public static final int TYPE_PREVIEW = 1;
 
     private int mType = TYPE_ALBUM;
-    private final int mMaxCount;
+    private final int mMaxSelectable;
     private Media mMedia;
     private OnClickListener mOnClickListener;
 
-    public AlbumPreviewSelectedAdapter(Context context, List<Media> datas, int maxCount) {
+    public AlbumPreviewSelectedAdapter(Context context, List<Media> datas,
+                                       int maxSelectable) {
         super(context, datas, R.layout.lib_album_adapter_preview_select);
-        this.mMaxCount = maxCount;
+        this.mMaxSelectable = maxSelectable;
     }
 
     public void setType(int type) {
@@ -63,9 +63,9 @@ public class AlbumPreviewSelectedAdapter extends CommonCheckAdapter<Media> {
     public boolean setSelected(Media item, boolean check) {
         if (TYPE_ALBUM == mType) {
             if (check) {
-                if (mDatas.size() >= SelectList.MAX_COUNT) {
+                if (mDatas.size() >= mMaxSelectable) {
                     Toast.makeText(mContext,
-                            mContext.getString(R.string.lib_album_choose_limit_tips, mMaxCount),
+                            mContext.getString(R.string.lib_album_choose_limit_tips, mMaxSelectable),
                             Toast.LENGTH_SHORT)
                             .show();
                     return false;

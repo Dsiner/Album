@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lib_album_color_primary">
+    android:background="@color/lib_album_color_bg_main">
 
     <com.d.lib.album.widget.FixedViewPager
         android:id="@+id/vp_pager"
@@ -15,7 +15,7 @@
         android:layout_height="75dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="@dimen/lib_album_dimen_title_height"
-        android:background="@color/lib_album_color_primary_50"
+        android:background="@color/lib_album_color_bottom_bar_translucent"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:visibility="gone" />
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/lib_album_color_primary_50" />
+        android:background="@color/lib_album_color_bottom_bar_translucent" />
 
     <com.d.lib.album.widget.AlbumTitleBar
         android:id="@+id/album_title"

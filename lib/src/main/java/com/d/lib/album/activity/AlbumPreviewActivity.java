@@ -43,8 +43,8 @@ public class AlbumPreviewActivity extends FragmentActivity
     public static final String EXTRA_SELECTS = "EXTRA_SELECTS";
     public static final String EXTRA_BUNDLE = "EXTRA_BUNDLE";
     public static final String EXTRA_BUNDLE_ORIGIN_ENABLE = "EXTRA_BUNDLE_ORIGIN_ENABLE";
-    public static final String EXTRA_BUNDLE_ORIGIN_CHECK = "EXTRA_BUNDLE_ORIGIN_CHECK";
-    public static final String EXTRA_BUNDLE_MAX_COUNT = "EXTRA_BUNDLE_MAX_COUNT";
+    public static final String EXTRA_BUNDLE_ORIGIN_CHECKED = "EXTRA_BUNDLE_ORIGIN_CHECKED";
+    public static final String EXTRA_BUNDLE_MAX_SELECTABLE = "EXTRA_BUNDLE_MAX_SELECTABLE";
     public static final String EXTRA_BUNDLE_POSITION = "EXTRA_BUNDLE_POSITION";
     public static final String EXTRA_BUNDLE_ITEM = "EXTRA_BUNDLE_ITEM";
 
@@ -85,13 +85,13 @@ public class AlbumPreviewActivity extends FragmentActivity
 
     public static Bundle getBundle(boolean originEnable,
                                    boolean originChecked,
-                                   int maxCount,
+                                   int maxSelectable,
                                    int position,
                                    Media item) {
         Bundle bundle = new Bundle();
         bundle.putBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, originEnable);
-        bundle.putBoolean(EXTRA_BUNDLE_ORIGIN_CHECK, originChecked);
-        bundle.putInt(EXTRA_BUNDLE_MAX_COUNT, maxCount);
+        bundle.putBoolean(EXTRA_BUNDLE_ORIGIN_CHECKED, originChecked);
+        bundle.putInt(EXTRA_BUNDLE_MAX_SELECTABLE, maxSelectable);
         bundle.putInt(EXTRA_BUNDLE_POSITION, position);
         bundle.putParcelable(EXTRA_BUNDLE_ITEM, item);
         return bundle;
@@ -113,7 +113,7 @@ public class AlbumPreviewActivity extends FragmentActivity
         }
         Bundle bundle = data.getBundleExtra(EXTRA_BUNDLE);
         bundle = bundle != null ? bundle : new Bundle();
-        return bundle.getBoolean(EXTRA_BUNDLE_ORIGIN_CHECK, false);
+        return bundle.getBoolean(EXTRA_BUNDLE_ORIGIN_CHECKED, false);
     }
 
     private Intent getResultIntent() {
@@ -121,7 +121,7 @@ public class AlbumPreviewActivity extends FragmentActivity
         intent.putParcelableArrayListExtra(EXTRA_SELECTS,
                 new ArrayList<>(mPreviewSelectedAdapter.getSelected()));
         Bundle bundle = new Bundle();
-        bundle.putBoolean(EXTRA_BUNDLE_ORIGIN_CHECK, album_bottom.isOrigin());
+        bundle.putBoolean(EXTRA_BUNDLE_ORIGIN_CHECKED, album_bottom.isOriginChecked());
         intent.putExtra(EXTRA_BUNDLE, bundle);
         return intent;
     }
@@ -172,14 +172,17 @@ public class AlbumPreviewActivity extends FragmentActivity
         mBundle = mBundle != null ? mBundle : new Bundle();
         mCurPosition = mBundle.getInt(EXTRA_BUNDLE_POSITION, 0);
         mCurItem = mBundle.getParcelable(EXTRA_BUNDLE_ITEM);
+        final int maxSelectable = mBundle.getInt(EXTRA_BUNDLE_MAX_SELECTABLE,
+                SelectList.MAX_COUNT);
 
         mPresenter = new LoadPresenter(getApplicationContext());
         mPresenter.attachView(this);
 
         album_title.setType(AlbumTitleBar.TYPE_PREVIEW);
+        album_title.setMaxSelectable(maxSelectable);
         album_bottom.setType(AlbumBottomBar.TYPE_PREVIEW);
         album_bottom.setOriginEnable(mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, false));
-        album_bottom.setOrigin(mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_CHECK, false));
+        album_bottom.setOriginChecked(mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_CHECKED, false));
         album_bottom.setOnBottomListener(new AlbumBottomBar.OnBottomListener() {
             @Override
             public void onOrigin(boolean check) {
@@ -195,8 +198,7 @@ public class AlbumPreviewActivity extends FragmentActivity
         });
 
         mPreviewSelectedAdapter = new AlbumPreviewSelectedAdapter(this,
-                new ArrayList<Media>(),
-                mBundle.getInt(EXTRA_BUNDLE_MAX_COUNT, SelectList.MAX_COUNT));
+                new ArrayList<Media>(), maxSelectable);
         mPreviewSelectedAdapter.setOnClickListener(new AlbumPreviewSelectedAdapter.OnClickListener() {
             @Override
             public void onClick(int position, Media item) {

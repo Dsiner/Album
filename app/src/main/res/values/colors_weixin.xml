@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global background color -->
+<!--    <color name="lib_album_color_status_bar_main">#333333</color>-->
+<!--    <color name="lib_album_color_bg_main">#333333</color>-->
+
+<!--    <color name="lib_album_color_main">#07C160</color>-->
+<!--    <color name="lib_album_color_title_bar">#333333</color>-->
+<!--    <color name="lib_album_color_title_bar_corner">#4C4C4C</color>-->
+<!--    <color name="lib_album_color_bottom_bar">#333333</color>-->
+<!--    <color name="lib_album_color_bottom_bar_translucent">#DD343434</color>-->
+<!--    <color name="lib_album_color_dialog">#333333</color>-->
+
+<!--    <color name="lib_album_color_button">#07C160</color>-->
+<!--    <color name="lib_album_color_button_disable">#4C4C4C</color>-->
+<!--    <color name="lib_album_color_text">#FFFFFF</color>-->
+<!--    <color name="lib_album_color_text_disable">#696969</color>-->
+<!--    <color name="lib_album_color_text_bottom">#FFFFFF</color>-->
+<!--    <color name="lib_album_color_text_bottom_disable">#696969</color>-->
+</resources>

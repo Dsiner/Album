@@ -48,7 +48,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="@dimen/lib_album_dimen_margin"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/lib_album_corner_btn_main_normal"
+            android:background="@drawable/lib_album_corner_btn_main"
             android:gravity="center"
             android:paddingLeft="@dimen/lib_album_dimen_padding"
             android:paddingTop="6dp"

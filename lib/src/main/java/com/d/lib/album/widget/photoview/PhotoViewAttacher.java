@@ -47,10 +47,11 @@ public class PhotoViewAttacher {
             = new ScaleDragGestureDetector.OnScaleDragGestureListener() {
         @Override
         public void onDrag(MotionEvent ev, float dx, float dy) {
-            if (mScaleDragDetector.isScaling()) {
+            final int pointerCount = ev.getPointerCount();
+            if (mMinDragPointerCount <= 1 && mScaleDragDetector.isScaling()) {
                 return; // Do not drag if we are already scaling
             }
-            if (ev.getPointerCount() < mMinDragPointerCount) {
+            if (pointerCount < mMinDragPointerCount) {
                 return;
             }
             if (mOnGestureListener != null) {
