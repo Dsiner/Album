@@ -1,5 +1,6 @@
 package com.d.lib.album.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.d.lib.album.R;
+import com.d.lib.album.activity.AlbumActivity;
+import com.d.lib.album.activity.CaptureActivity;
 import com.d.lib.album.model.Media;
 import com.d.lib.album.model.SelectList;
 import com.d.lib.album.util.CachePool;
@@ -24,16 +27,20 @@ public class AlbumMediaAdapter extends CommonCursorAdapter {
     private final SelectList<Media> mSelectList;
     private OnClickListener mOnClickListener;
 
-    public AlbumMediaAdapter(Context context, int maxSelectable) {
+    public AlbumMediaAdapter(Context context, final int maxSelectable, final boolean captureEnable) {
         super(context, new MultiItemTypeSupport<Cursor>() {
+            final int ITEM_ID_CAPTURE = (int) Media.ITEM_ID_CAPTURE;
+
             @Override
             public int getItemViewType(int position, Cursor item) {
-                return 0;
+                return captureEnable && position == 0 ? ITEM_ID_CAPTURE : 0;
             }
 
             @Override
             public int getLayoutId(int viewType) {
-                return R.layout.lib_album_adapter_image;
+                return viewType == ITEM_ID_CAPTURE
+                        ? R.layout.lib_album_adapter_capture
+                        : R.layout.lib_album_adapter_image;
             }
         });
         mSelectList = new SelectList<>(maxSelectable);
@@ -63,7 +70,13 @@ public class AlbumMediaAdapter extends CommonCursorAdapter {
     }
 
     private void convertCapture(final int position, final CommonHolder holder, final Cursor item) {
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CaptureActivity.openActivityForResult((Activity) mContext,
+                        AlbumActivity.REQUEST_CODE_CAPTURE);
+            }
+        });
     }
 
     private void convertImage(final int position, final CommonHolder holder, final Cursor cursor) {

@@ -61,6 +61,19 @@ public class Album {
     }
 
     /**
+     * Determines whether the photo capturing is enabled or not on the media grid view.
+     * <p>
+     * If this value is set true, photo capturing entry will appear only on All Media's page.
+     *
+     * @param enable Whether to enable capturing or not. Default value is false;
+     * @return {@link Album} for fluent API.
+     */
+    public Album capture(boolean enable) {
+        mBundle.putBoolean(AlbumActivity.EXTRA_BUNDLE_CAPTURE_ENABLE, enable);
+        return this;
+    }
+
+    /**
      * Show a original photo check options.Let users decide whether use original photo after select
      *
      * @param enable Whether to enable original photo or not

@@ -33,6 +33,7 @@ public class AlbumEditActivity extends FragmentActivity implements View.OnClickL
 
     private PhotoEditView iv_photo;
     private Uri mUri;
+    private boolean mIsOk;
 
     public static void openActivityForResult(Activity activity, Uri uri, int requestCode) {
         if (activity == null) {
@@ -62,7 +63,7 @@ public class AlbumEditActivity extends FragmentActivity implements View.OnClickL
     }
 
     private void confirm() {
-        setResult(RESULT_OK, getResultIntent());
+        mIsOk = true;
         finish();
     }
 
@@ -130,6 +131,12 @@ public class AlbumEditActivity extends FragmentActivity implements View.OnClickL
             to = from;
         }
         return to;
+    }
+
+    @Override
+    public void finish() {
+        setResult(mIsOk ? RESULT_OK : RESULT_CANCELED, getResultIntent());
+        super.finish();
     }
 
     @Override

@@ -35,14 +35,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_photo_capture:
-                CaptureActivity.openActivityForResult(this, CaptureActivity.REQUEST_CODE_CAPTURE);
+                CaptureActivity.openActivityForResult(this, REQUEST_CODE_CAPTURE);
                 break;
 
             case R.id.btn_open:
                 Album.with(this)
                         .spanCount(4)
+                        .capture(false)
                         .originEnable(true)
-                        .maxSelectable(5)
+                        .maxSelectable(9)
                         .startActivityForResult(REQUEST_CODE_ALBUM);
         }
     }

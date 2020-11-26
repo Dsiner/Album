@@ -19,6 +19,7 @@ import android.view.View;
 
 import com.d.lib.album.R;
 import com.d.lib.album.adapter.AlbumMediaAdapter;
+import com.d.lib.album.loader.AlbumMediaLoader;
 import com.d.lib.album.model.Album;
 import com.d.lib.album.model.Media;
 import com.d.lib.album.model.SelectList;
@@ -40,14 +41,17 @@ import java.util.List;
  */
 public class AlbumActivity extends FragmentActivity implements View.OnClickListener {
 
-    public static final int REQUEST_CODE_PREVIEW = 1001;
-    public static final int REQUEST_CODE_PICK = 1002;
+    public static final int REQUEST_CODE_CAPTURE = 1001;
+    public static final int REQUEST_CODE_PREVIEW = 1002;
+    public static final int REQUEST_CODE_PICK = 1003;
+    public static final int REQUEST_CODE_EDIT = 1004;
     public static final int REQUEST_CODE_PERMISSION = 2001;
 
     public static final String EXTRA_RESULT_SELECTS = "EXTRA_RESULT_SELECTS";
     public static final String EXTRA_RESULT_ORIGIN = "EXTRA_RESULT_ORIGIN";
 
     public static final String EXTRA_BUNDLE = "EXTRA_BUNDLE";
+    public static final String EXTRA_BUNDLE_CAPTURE_ENABLE = "EXTRA_BUNDLE_CAPTURE_ENABLE";
     public static final String EXTRA_BUNDLE_ORIGIN_ENABLE = "EXTRA_BUNDLE_ORIGIN_ENABLE";
     public static final String EXTRA_BUNDLE_MAX_SELECTABLE = "EXTRA_BUNDLE_MAX_SELECTABLE";
     public static final String EXTRA_BUNDLE_SPAN_COUNT = "EXTRA_BUNDLE_SPAN_COUNT";
@@ -171,10 +175,12 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
     private void init() {
         mBundle = getIntent().getBundleExtra(EXTRA_BUNDLE);
         mBundle = mBundle != null ? mBundle : new Bundle();
+        final boolean captureEnable = mBundle.getBoolean(EXTRA_BUNDLE_CAPTURE_ENABLE, false);
         final boolean originEnable = mBundle.getBoolean(EXTRA_BUNDLE_ORIGIN_ENABLE, false);
         final int maxSelectable = mBundle.getInt(EXTRA_BUNDLE_MAX_SELECTABLE,
                 SelectList.MAX_COUNT);
         final int spanCount = mBundle.getInt(EXTRA_BUNDLE_SPAN_COUNT, 4);
+        final int space = Utils.dp2px(this, 2f);
 
         album_title.setType(AlbumTitleBar.TYPE_ALBUM);
         album_title.setMaxSelectable(maxSelectable);
@@ -185,8 +191,9 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, spanCount);
         rv_list.setLayoutManager(layoutManager);
+        rv_list.setPadding(-space, -space, -space, -space);
 
-        mAdapter = new AlbumMediaAdapter(this, maxSelectable);
+        mAdapter = new AlbumMediaAdapter(this, maxSelectable, captureEnable);
         mAdapter.setOnClickListener(new AlbumMediaAdapter.OnClickListener() {
             @Override
             public void onCount(int position, Media item, int count) {
@@ -205,6 +212,10 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
             @Override
             public void onLoad(String id, Cursor cursor) {
                 if (pick(id, cursor)) {
+                    return;
+                }
+                if (captureEnable && TextUtils.equals(Album.ALBUM_ID_ALL, id)) {
+                    mAdapter.setCursor(AlbumMediaLoader.mergeCapture(cursor), true);
                     return;
                 }
                 mAdapter.setCursor(cursor, true);
@@ -264,7 +275,22 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_PREVIEW) {
+        if (requestCode == REQUEST_CODE_CAPTURE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri uri = CaptureActivity.getExtra(data);
+                AlbumEditActivity.openActivityForResult(this,
+                        uri, REQUEST_CODE_EDIT);
+            }
+
+        } else if (requestCode == REQUEST_CODE_EDIT) {
+            Uri uri = AlbumEditActivity.getExtra(data);
+            final List<Media> list = new ArrayList<>();
+            final boolean isOrigin = AlbumPreviewActivity.getOriginExtra(data);
+            list.add(Media.valueOf(uri));
+            onSelectedResult(list, isOrigin);
+            confirm();
+
+        } else if (requestCode == REQUEST_CODE_PREVIEW) {
             final List<Media> list = AlbumPreviewActivity.getSelectedExtra(data);
             final boolean isOrigin = AlbumPreviewActivity.getOriginExtra(data);
             onSelectedResult(list, isOrigin);

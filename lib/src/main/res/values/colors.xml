@@ -2,13 +2,13 @@
 <resources>
     <!-- Global background color -->
     <color name="lib_album_color_status_bar_main">#0288D1</color>
-    <color name="lib_album_color_bg_main">#FFFFFF</color>
+    <color name="lib_album_color_bg_main">#F0F2F5</color>
 
     <color name="lib_album_color_main">#0288D1</color>
     <color name="lib_album_color_title_bar">#0288D1</color>
     <color name="lib_album_color_title_bar_corner">#00000000</color>
     <color name="lib_album_color_bottom_bar">#FFFFFF</color>
-    <color name="lib_album_color_bottom_bar_translucent">#DDFFFFFF</color>
+    <color name="lib_album_color_bottom_bar_translucent">#DDF0F2F5</color>
     <color name="lib_album_color_dialog">#FFFFFF</color>
 
     <color name="lib_album_color_button">#00000000</color>

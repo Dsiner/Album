@@ -5,7 +5,7 @@ android {
     resourcePrefix 'lib_album_'
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 11
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

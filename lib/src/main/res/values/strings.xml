@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="lib_album_all">全部图片</string>
-    <string name="lib_album_confirm">确定</string>
-    <string name="lib_album_finish">完成</string>
-    <string name="lib_album_preview">预览</string>
-    <string name="lib_album_origin">原图</string>
-    <string name="lib_album_edit">编辑</string>
-    <string name="lib_album_choose">选择</string>
-    <string name="lib_album_choose_limit_tips">最多只能选择%d张图片哦~</string>
+    <string name="lib_album_all">All Pictures</string>
+    <string name="lib_album_confirm">Done</string>
+    <string name="lib_album_finish">Done</string>
+    <string name="lib_album_preview">Preview</string>
+    <string name="lib_album_origin">Full Image</string>
+    <string name="lib_album_edit">Edit</string>
+    <string name="lib_album_choose">Select</string>
+    <string name="lib_album_choose_limit_tips">You can only select %d pictures at most~</string>
     <string name="lib_album_camera_not_available">Camera is not available</string>
     <string name="lib_album_camera_error">Cannot launch camera</string>
 </resources>
