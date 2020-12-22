@@ -5,17 +5,18 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionsChecker {
+public class PermissionChecker {
 
-    public static void permissionsCheck(final Activity activity,
-                                        final List<String> requiredPermissions,
+    public static void permissionsCheck(@NonNull final Activity activity,
+                                        @NonNull final List<String> requiredPermissions,
                                         final int requestCode,
-                                        final Runnable runnable) {
+                                        @Nullable final Runnable runnable) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             if (runnable != null) {
                 runnable.run();
@@ -51,7 +52,31 @@ public class PermissionsChecker {
         return true;
     }
 
-    public static boolean isGranted(Context context, String permission) {
+    public static boolean isGranted(@NonNull Context context, @NonNull List<String> permissions) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        for (String permission : permissions) {
+            if (!isGranted(context, permission)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isGranted(@NonNull Context context, @NonNull String... permissions) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        for (String permission : permissions) {
+            if (!isGranted(context, permission)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isGranted(@NonNull Context context, @NonNull String permission) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }

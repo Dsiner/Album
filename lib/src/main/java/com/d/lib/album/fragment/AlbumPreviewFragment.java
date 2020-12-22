@@ -16,7 +16,7 @@ import com.d.lib.album.model.Media;
  * Created by D on 2020/10/11.
  */
 @Deprecated
-public class AlbumPreviewFragment extends AbsLazyFragment {
+public class AlbumPreviewFragment extends LazyLoaderFragment {
 
     public static final String EXTRA_MEDIA = "EXTRA_MEDIA";
 

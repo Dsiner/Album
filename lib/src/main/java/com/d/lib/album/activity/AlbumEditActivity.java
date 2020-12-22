@@ -15,7 +15,7 @@ import android.view.View;
 import com.d.lib.album.R;
 import com.d.lib.album.compress.Engine;
 import com.d.lib.album.util.CachePool;
-import com.d.lib.album.util.PermissionsChecker;
+import com.d.lib.album.util.PermissionChecker;
 import com.d.lib.album.widget.PhotoEditView;
 
 import java.io.File;
@@ -106,7 +106,7 @@ public class AlbumEditActivity extends FragmentActivity implements View.OnClickL
     }
 
     private void init() {
-        PermissionsChecker.permissionsCheck(this,
+        PermissionChecker.permissionsCheck(this,
                 Collections.singletonList(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 REQUEST_CODE_PERMISSION,
                 new Runnable() {
@@ -143,7 +143,7 @@ public class AlbumEditActivity extends FragmentActivity implements View.OnClickL
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
-            if (PermissionsChecker.onRequestPermissionsResult(requestCode,
+            if (PermissionChecker.onRequestPermissionsResult(requestCode,
                     permissions, grantResults)) {
                 nextInit();
             } else {

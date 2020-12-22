@@ -20,15 +20,15 @@ import com.d.lib.album.R;
 import com.d.lib.album.adapter.AlbumAdapter;
 import com.d.lib.album.model.Album;
 import com.d.lib.album.model.SelectList;
-import com.d.lib.album.mvp.ILoadView;
-import com.d.lib.album.mvp.LoadPresenter;
+import com.d.lib.album.mvp.AlbumLoaderPresenter;
+import com.d.lib.album.mvp.IAlbumLoaderView;
 import com.d.lib.album.util.Utils;
 
 /**
  * AlbumTitleBar
  * Created by D on 2020/10/11.
  **/
-public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnClickListener {
+public class AlbumTitleBar extends LinearLayout implements IAlbumLoaderView, View.OnClickListener {
     public static final int TYPE_ALBUM = 0;
     public static final int TYPE_PREVIEW = 1;
 
@@ -43,7 +43,7 @@ public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnCli
 
     private AlbumAdapter mAdapter;
     private Album mAlbum = Album.createAll();
-    private LoadPresenter mPresenter;
+    private AlbumLoaderPresenter mPresenter;
     private OnLoadListener mOnLoadListener;
 
     public AlbumTitleBar(Context context) {
@@ -88,7 +88,7 @@ public class AlbumTitleBar extends LinearLayout implements ILoadView, View.OnCli
         mContext = context;
         mRootView = LayoutInflater.from(context).inflate(R.layout.lib_album_layout_title, this);
         bindView();
-        mPresenter = new LoadPresenter(context.getApplicationContext());
+        mPresenter = new AlbumLoaderPresenter(context.getApplicationContext());
         mPresenter.attachView(this);
 
         mAdapter = new AlbumAdapter(context);

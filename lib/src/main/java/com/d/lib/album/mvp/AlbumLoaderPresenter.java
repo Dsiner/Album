@@ -13,14 +13,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * LoadPresenter
+ * AlbumLoaderPresenter
  * Created by D on 2017/4/26.
  */
-public class LoadPresenter extends MvpBasePresenter<ILoadView> {
+public class AlbumLoaderPresenter extends MvpBasePresenter<IAlbumLoaderView> {
     @Deprecated
     private final LinkedHashMap<String, Cursor> mHashMap = new LinkedHashMap<>();
 
-    public LoadPresenter(Context context) {
+    public AlbumLoaderPresenter(Context context) {
         super(context);
     }
 

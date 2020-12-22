@@ -13,7 +13,7 @@ import android.view.ViewGroup;
  * Auto-Loader - ViewPager Fragment
  * Created by D on 2017/8/23.
  */
-public abstract class AbsLazyFragment extends Fragment {
+public abstract class LazyLoaderFragment extends Fragment {
     protected Context mContext;
     protected Activity mActivity;
     protected View mRootView;
@@ -73,7 +73,6 @@ public abstract class AbsLazyFragment extends Fragment {
             return;
         }
         mIsLazyLoaded = true; // Just lazy loading once
-        initList();
         getData();
     }
 

@@ -21,8 +21,8 @@ import com.d.lib.album.adapter.AlbumPreviewViewPagerAdapter;
 import com.d.lib.album.model.Album;
 import com.d.lib.album.model.Media;
 import com.d.lib.album.model.SelectList;
-import com.d.lib.album.mvp.ILoadView;
-import com.d.lib.album.mvp.LoadPresenter;
+import com.d.lib.album.mvp.AlbumLoaderPresenter;
+import com.d.lib.album.mvp.IAlbumLoaderView;
 import com.d.lib.album.widget.AlbumBottomBar;
 import com.d.lib.album.widget.AlbumTitleBar;
 
@@ -34,7 +34,7 @@ import java.util.List;
  * Created by D on 2017/4/26.
  */
 public class AlbumPreviewActivity extends FragmentActivity
-        implements View.OnClickListener, ViewPager.OnPageChangeListener, ILoadView {
+        implements View.OnClickListener, ViewPager.OnPageChangeListener, IAlbumLoaderView {
 
     public static final int REQUEST_CODE_EDIT = 1001;
     public static final int RESULT_CONFIRM = 9;
@@ -60,7 +60,7 @@ public class AlbumPreviewActivity extends FragmentActivity
     private Bundle mBundle;
     private int mCurPosition;
     private Media mCurItem;
-    private LoadPresenter mPresenter;
+    private AlbumLoaderPresenter mPresenter;
     private boolean mIsOk;
 
     static void openActivityForResult(Activity activity,
@@ -175,7 +175,7 @@ public class AlbumPreviewActivity extends FragmentActivity
         final int maxSelectable = mBundle.getInt(EXTRA_BUNDLE_MAX_SELECTABLE,
                 SelectList.MAX_COUNT);
 
-        mPresenter = new LoadPresenter(getApplicationContext());
+        mPresenter = new AlbumLoaderPresenter(getApplicationContext());
         mPresenter.attachView(this);
 
         album_title.setType(AlbumTitleBar.TYPE_PREVIEW);

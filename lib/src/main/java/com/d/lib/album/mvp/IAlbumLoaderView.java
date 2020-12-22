@@ -3,10 +3,10 @@ package com.d.lib.album.mvp;
 import android.database.Cursor;
 
 /**
- * ILoadView
+ * IAlbumLoaderView
  * Created by D on 2020/10/10.
  */
-public interface ILoadView extends MvpBaseView {
+public interface IAlbumLoaderView extends MvpBaseView {
     void onLoadAlbumSuccess(Cursor cursor);
 
     void onLoadAlbumError(Throwable e);

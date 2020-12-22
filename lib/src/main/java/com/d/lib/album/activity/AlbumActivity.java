@@ -25,7 +25,7 @@ import com.d.lib.album.model.Media;
 import com.d.lib.album.model.SelectList;
 import com.d.lib.album.util.CachePool;
 import com.d.lib.album.util.IntentUtils;
-import com.d.lib.album.util.PermissionsChecker;
+import com.d.lib.album.util.PermissionChecker;
 import com.d.lib.album.util.Utils;
 import com.d.lib.album.widget.AlbumBottomBar;
 import com.d.lib.album.widget.AlbumTitleBar;
@@ -222,7 +222,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
             }
         });
 
-        PermissionsChecker.permissionsCheck(this,
+        PermissionChecker.permissionsCheck(this,
                 Collections.singletonList(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 REQUEST_CODE_PERMISSION,
                 new Runnable() {
@@ -263,7 +263,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
-            if (PermissionsChecker.onRequestPermissionsResult(requestCode,
+            if (PermissionChecker.onRequestPermissionsResult(requestCode,
                     permissions, grantResults)) {
                 nextInit();
             } else {
