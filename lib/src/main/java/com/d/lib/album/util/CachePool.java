@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 
+import com.d.lib.album.Album;
 import com.d.lib.album.compress.Engine;
 import com.d.lib.album.compress.ImageUtil;
 import com.d.lib.album.compress.UriUtil;
@@ -24,13 +25,14 @@ import java.util.Map;
  * Created by D on 2020/10/11.
  **/
 public class CachePool {
-    public static final String CAMERA_DIRECTORY_PATH
+
+    private static String CAMERA_DIRECTORY_PATH
             = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
-            + File.separator + "Album"
+            + File.separator + Album.sName
             + File.separator + "camera";
-    public static final String EXPORT_DIRECTORY_PATH
+    private static String EXPORT_DIRECTORY_PATH
             = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
-            + File.separator + "Album"
+            + File.separator + Album.sName
             + File.separator + "export";
     public static final String FILE_CAMERA_PREFIX = "album_camera_";
     public static final String FILE_EXPORT_PREFIX = "album_export_";
@@ -52,6 +54,25 @@ public class CachePool {
             }
         }
         return INSTANCE;
+    }
+
+    public static String getCameraDirectoryPath() {
+        return CAMERA_DIRECTORY_PATH;
+    }
+
+    public static String getExportDirectoryPath() {
+        return EXPORT_DIRECTORY_PATH;
+    }
+
+    public static void setName(String name) {
+        CAMERA_DIRECTORY_PATH
+                = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
+                + File.separator + name
+                + File.separator + "camera";
+        EXPORT_DIRECTORY_PATH
+                = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
+                + File.separator + name
+                + File.separator + "export";
     }
 
     private static File convertFile(final ByteArrayOutputStream outputStream, final String path) throws Exception {

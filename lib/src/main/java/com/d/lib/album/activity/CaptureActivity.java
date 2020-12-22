@@ -119,7 +119,7 @@ public class CaptureActivity extends FragmentActivity {
 
     private File createImageFile() throws IOException {
         final String fileName = CachePool.FILE_CAMERA_PREFIX + System.currentTimeMillis();
-        final File dir = new File(CachePool.CAMERA_DIRECTORY_PATH);
+        final File dir = new File(CachePool.getCameraDirectoryPath());
         if (!dir.exists() || !dir.isDirectory()) {
             dir.mkdirs();
         }

@@ -6,17 +6,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.d.lib.album.activity.AlbumActivity;
+import com.d.lib.album.util.CachePool;
 
 /**
  * Album
  * Created by D on 2020/9/26.
  */
 public class Album {
+    public static final String sName = "Album";
+
     private final Object mFrom;
     private final Bundle mBundle = new Bundle();
 
     private Album(Object from) {
         this.mFrom = from;
+    }
+
+    public static void setName(String name) {
+        CachePool.setName(name);
     }
 
     /**
