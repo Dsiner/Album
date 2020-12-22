@@ -120,7 +120,7 @@ public class AlbumTitleBar extends LinearLayout implements IAlbumLoaderView, Vie
             iv_title_left.setImageResource(R.drawable.lib_album_ic_title_close);
             llyt_title_title_root.setBackgroundDrawable(ContextCompat.getDrawable(mContext,
                     R.drawable.lib_album_corner_choose));
-            tv_title_title.setPadding(Utils.dp2px(mContext, 12),
+            tv_title_title.setPadding(Utils.dp2px(mContext, 0),
                     Utils.dp2px(mContext, 4),
                     Utils.dp2px(mContext, 0),
                     Utils.dp2px(mContext, 4));
