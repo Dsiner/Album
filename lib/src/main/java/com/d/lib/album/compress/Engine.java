@@ -55,7 +55,7 @@ public class Engine {
         Engine engine = new Engine(new InputStreamProvider() {
             @Override
             public String getPath() {
-                return UriUtil.getPath(context, uri);
+                return UriUtils.getPath(context, uri);
             }
 
             @Override
@@ -96,7 +96,7 @@ public class Engine {
             BitmapFactory.decodeStream(input, null, options);
             return options;
         } finally {
-            ImageUtil.closeQuietly(input);
+            ImageUtils.closeQuietly(input);
         }
     }
 
@@ -130,9 +130,9 @@ public class Engine {
         if (Bitmap.CompressFormat.JPEG == mOptions.format) {
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mOptions.degree = ImageUtil.getImageDegree24(mProvider.open());
+                    mOptions.degree = ImageUtils.getImageDegree24(mProvider.open());
                 } else {
-                    mOptions.degree = ImageUtil.getImageDegree(mProvider.getPath());
+                    mOptions.degree = ImageUtils.getImageDegree(mProvider.getPath());
                 }
             } catch (Throwable e) {
                 e.printStackTrace();
@@ -163,7 +163,7 @@ public class Engine {
             e.printStackTrace();
             throw e;
         } finally {
-            ImageUtil.closeQuietly(input);
+            ImageUtils.closeQuietly(input);
         }
     }
 }

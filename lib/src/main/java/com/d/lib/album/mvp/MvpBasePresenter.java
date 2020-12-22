@@ -7,7 +7,7 @@ import android.support.annotation.UiThread;
 
 import java.lang.ref.WeakReference;
 
-public class MvpBasePresenter<V extends MvpBaseView> {
+class MvpBasePresenter<V extends MvpBaseView> {
     protected Context mContext;
     private WeakReference<V> mViewRef;
 

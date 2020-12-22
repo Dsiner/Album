@@ -13,8 +13,6 @@ import com.d.lib.album.util.CachePool;
  * Created by D on 2020/9/26.
  */
 public class Album {
-    public static final String sName = "Album";
-
     private final Object mFrom;
     private final Bundle mBundle = new Bundle();
 
@@ -22,8 +20,8 @@ public class Album {
         this.mFrom = from;
     }
 
-    public static void setName(String name) {
-        CachePool.setName(name);
+    public static void setDiskCache(String diskCacheName) {
+        CachePool.setDiskCache(diskCacheName);
     }
 
     /**

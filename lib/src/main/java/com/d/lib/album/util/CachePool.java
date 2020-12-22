@@ -7,10 +7,9 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 
-import com.d.lib.album.Album;
 import com.d.lib.album.compress.Engine;
-import com.d.lib.album.compress.ImageUtil;
-import com.d.lib.album.compress.UriUtil;
+import com.d.lib.album.compress.ImageUtils;
+import com.d.lib.album.compress.UriUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -25,17 +24,17 @@ import java.util.Map;
  * Created by D on 2020/10/11.
  **/
 public class CachePool {
-
+    public static final String sDiskCacheName = "Album";
+    public static final String FILE_CAMERA_PREFIX = "album_camera_";
+    public static final String FILE_EXPORT_PREFIX = "album_export_";
     private static String CAMERA_DIRECTORY_PATH
             = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
-            + File.separator + Album.sName
+            + File.separator + sDiskCacheName
             + File.separator + "camera";
     private static String EXPORT_DIRECTORY_PATH
             = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
-            + File.separator + Album.sName
+            + File.separator + sDiskCacheName
             + File.separator + "export";
-    public static final String FILE_CAMERA_PREFIX = "album_camera_";
-    public static final String FILE_EXPORT_PREFIX = "album_export_";
 
     private volatile static CachePool INSTANCE;
     private final Context mContext;
@@ -64,14 +63,14 @@ public class CachePool {
         return EXPORT_DIRECTORY_PATH;
     }
 
-    public static void setName(String name) {
+    public static void setDiskCache(String diskCacheName) {
         CAMERA_DIRECTORY_PATH
                 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
-                + File.separator + name
+                + File.separator + diskCacheName
                 + File.separator + "camera";
         EXPORT_DIRECTORY_PATH
                 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
-                + File.separator + name
+                + File.separator + diskCacheName
                 + File.separator + "export";
     }
 
@@ -94,7 +93,7 @@ public class CachePool {
             e.printStackTrace();
             throw e;
         } finally {
-            ImageUtil.closeQuietly(fos);
+            ImageUtils.closeQuietly(fos);
         }
     }
 
@@ -161,7 +160,7 @@ public class CachePool {
             ByteArrayOutputStream outputStream = Engine.qualityCompress(bitmap,
                     Bitmap.CompressFormat.JPEG,
                     Engine.MAX_QUALITY, Engine.MAX_OUTPUT_SIZE);
-            String path = UriUtil.getPath(mContext, uri);
+            String path = UriUtils.getPath(mContext, uri);
             File file = convertFile(outputStream, path);
             if (file.exists() && file.isFile()) {
                 MediaScannerConnection.scanFile(mContext,

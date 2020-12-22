@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-public class ImageUtil {
+public class ImageUtils {
 
     private static final String TAG = "Compress";
 
@@ -71,7 +71,7 @@ public class ImageUtil {
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
-            ImageUtil.closeQuietly(inputStream);
+            ImageUtils.closeQuietly(inputStream);
         }
         return 0;
     }

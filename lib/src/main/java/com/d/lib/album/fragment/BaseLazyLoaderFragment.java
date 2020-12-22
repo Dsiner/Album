@@ -13,7 +13,7 @@ import android.view.ViewGroup;
  * Auto-Loader - ViewPager Fragment
  * Created by D on 2017/8/23.
  */
-public abstract class LazyLoaderFragment extends Fragment {
+abstract class BaseLazyLoaderFragment extends Fragment {
     protected Context mContext;
     protected Activity mActivity;
     protected View mRootView;
