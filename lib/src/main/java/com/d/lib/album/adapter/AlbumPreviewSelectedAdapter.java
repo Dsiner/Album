@@ -23,9 +23,8 @@ import java.util.List;
 public class AlbumPreviewSelectedAdapter extends CommonCheckAdapter<Media> {
     public static final int TYPE_ALBUM = 0;
     public static final int TYPE_PREVIEW = 1;
-
-    private int mType = TYPE_ALBUM;
     private final int mMaxSelectable;
+    private int mType = TYPE_ALBUM;
     private Media mMedia;
     private OnClickListener mOnClickListener;
 

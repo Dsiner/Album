@@ -138,6 +138,9 @@ public class CaptureActivity extends FragmentActivity {
                     permissions, grantResults)) {
                 nextInit();
             } else {
+                Toast.makeText(getApplicationContext(),
+                        getString(R.string.lib_album_permission_denied),
+                        Toast.LENGTH_SHORT).show();
                 finish();
             }
         }

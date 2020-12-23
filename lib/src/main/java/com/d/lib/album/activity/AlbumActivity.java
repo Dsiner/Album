@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.d.lib.album.R;
 import com.d.lib.album.adapter.AlbumMediaAdapter;
@@ -191,6 +192,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, spanCount);
         rv_list.setLayoutManager(layoutManager);
+        rv_list.setHasFixedSize(true);
         rv_list.setPadding(-space, -space, -space, -space);
 
         mAdapter = new AlbumMediaAdapter(this, maxSelectable, captureEnable);
@@ -267,6 +269,9 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
                     permissions, grantResults)) {
                 nextInit();
             } else {
+                Toast.makeText(getApplicationContext(),
+                        getString(R.string.lib_album_permission_denied),
+                        Toast.LENGTH_SHORT).show();
                 finish();
             }
         }

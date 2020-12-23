@@ -10,4 +10,5 @@
     <string name="lib_album_choose_limit_tips">最多只能选择%d张图片哦~</string>
     <string name="lib_album_camera_not_available">Camera is not available</string>
     <string name="lib_album_camera_error">Cannot launch camera</string>
+    <string name="lib_album_permission_denied">Denied permission!</string>
 </resources>

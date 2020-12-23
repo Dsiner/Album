@@ -14,8 +14,9 @@ import java.util.TreeSet;
  * Created by D on 2018/1/25.
  */
 abstract class CommonCheckAdapter<T> extends CommonAdapter<T> {
-    public final static int MODE_NORMAL = 0;
-    public final static int MODE_SELECT = 1;
+    public static final int MODE_NORMAL = 0;
+    public static final int MODE_SELECT = 1;
+
     protected final Set<Integer> mSelectedPositions;
     protected int mMode = MODE_NORMAL;
 
@@ -34,9 +35,6 @@ abstract class CommonCheckAdapter<T> extends CommonAdapter<T> {
         this.notifyDataSetChanged();
     }
 
-    public boolean isSelected(int position) {
-        return mSelectedPositions.contains(position);
-    }
 
     public void toggleSelection(int position) {
         if (position < 0) {
@@ -82,6 +80,10 @@ abstract class CommonCheckAdapter<T> extends CommonAdapter<T> {
         }
     }
 
+    public boolean isSelected(int position) {
+        return mSelectedPositions.contains(position);
+    }
+
     public boolean isSelectAll() {
         List<T> list = getDatas();
         for (int i = 0; i < list.size(); i++) {
@@ -100,10 +102,6 @@ abstract class CommonCheckAdapter<T> extends CommonAdapter<T> {
             list.add(mDatas.get(positions.get(i)));
         }
         return list;
-    }
-
-    public void setSelected(int position) {
-        mSelectedPositions.contains(position);
     }
 
     public void clearSelection() {
