@@ -5,6 +5,20 @@
 
 > Album is a local image selector for Android.
 
+## Set up
+Maven:
+```xml
+<dependency>
+  <groupId>com.dsiner.lib</groupId>
+  <artifactId>album</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+or Gradle:
+```groovy
+implementation 'com.dsiner.lib:album:1.0.0'
+```
+
 ## Features
 - Use it in Activity or Fragment
 - Take a picture
