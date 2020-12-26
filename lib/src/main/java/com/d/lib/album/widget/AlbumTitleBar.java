@@ -34,7 +34,7 @@ public class AlbumTitleBar extends LinearLayout implements IAlbumLoaderView, Vie
 
     private Context mContext;
     private View mRootView;
-    private int mType;
+    private int mType = TYPE_ALBUM;
     private int mMaxSelectable = SelectList.MAX_COUNT;
     private TextView tv_title_title, tv_title_right;
     private ImageView iv_title_left, iv_title_title;
@@ -61,6 +61,9 @@ public class AlbumTitleBar extends LinearLayout implements IAlbumLoaderView, Vie
 
     @Override
     public void onClick(View v) {
+        if (mType == TYPE_PREVIEW) {
+            return;
+        }
         int resId = v.getId();
         if (R.id.llyt_title_title_root == resId) {
             toggle();
@@ -120,7 +123,9 @@ public class AlbumTitleBar extends LinearLayout implements IAlbumLoaderView, Vie
             iv_title_left.setImageResource(R.drawable.lib_album_ic_title_close);
             llyt_title_title_root.setBackgroundDrawable(ContextCompat.getDrawable(mContext,
                     R.drawable.lib_album_corner_choose));
-            tv_title_title.setPadding(Utils.dp2px(mContext, 0),
+
+            int paddingLeft = (int) getResources().getDimension(R.dimen.lib_album_dimen_title_bar_padding_left);
+            tv_title_title.setPadding(paddingLeft,
                     Utils.dp2px(mContext, 4),
                     Utils.dp2px(mContext, 0),
                     Utils.dp2px(mContext, 4));
