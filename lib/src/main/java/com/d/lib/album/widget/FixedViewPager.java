@@ -1,11 +1,12 @@
 package com.d.lib.album.widget;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
 
 /**
  * Hacky fix for Issue #4 and

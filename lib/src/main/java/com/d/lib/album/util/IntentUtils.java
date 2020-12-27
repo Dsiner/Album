@@ -8,6 +8,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -22,13 +23,6 @@ public class IntentUtils {
     public static final int MIME_TYPE_ALL = 0;
     public static final int MIME_TYPE_IMAGE = 1;
     public static final int MIME_TYPE_VIDEO = 2;
-
-    @IntDef({MIME_TYPE_ALL, MIME_TYPE_IMAGE, MIME_TYPE_VIDEO})
-    @Target({ElementType.METHOD, ElementType.PARAMETER})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface MimeType {
-
-    }
 
     /**
      * Return whether the intent is available.
@@ -126,5 +120,12 @@ public class IntentUtils {
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, multiple);
         }
         intent.addCategory(Intent.CATEGORY_OPENABLE);
+    }
+
+    @IntDef({MIME_TYPE_ALL, MIME_TYPE_IMAGE, MIME_TYPE_VIDEO})
+    @Target({ElementType.METHOD, ElementType.PARAMETER})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface MimeType {
+
     }
 }

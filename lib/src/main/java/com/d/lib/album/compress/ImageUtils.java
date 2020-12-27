@@ -2,8 +2,9 @@ package com.d.lib.album.compress;
 
 import android.media.ExifInterface;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;

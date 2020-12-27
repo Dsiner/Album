@@ -1,11 +1,12 @@
 package com.d.lib.album.widget;
 
 import android.content.Context;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
 
 import com.d.lib.album.util.Utils;
 
