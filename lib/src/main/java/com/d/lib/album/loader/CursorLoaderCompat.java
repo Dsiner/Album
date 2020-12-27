@@ -3,11 +3,11 @@ package com.d.lib.album.loader;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContentResolverCompat;
-import android.support.v4.os.CancellationSignal;
-import android.support.v4.os.OperationCanceledException;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContentResolverCompat;
+import androidx.core.os.CancellationSignal;
+import androidx.core.os.OperationCanceledException;
 
 /**
  * CursorLoaderCompat

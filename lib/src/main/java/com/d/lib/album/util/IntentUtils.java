@@ -8,9 +8,9 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

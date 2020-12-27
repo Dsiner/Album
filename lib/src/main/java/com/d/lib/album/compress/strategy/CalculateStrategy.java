@@ -2,7 +2,7 @@ package com.d.lib.album.compress.strategy;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.d.lib.album.compress.BitmapOptions;
 

@@ -2,7 +2,7 @@ package com.d.lib.album.compress;
 
 import android.media.ExifInterface;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;

@@ -3,7 +3,7 @@ package com.d.lib.album.util;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Utils

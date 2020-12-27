@@ -1,6 +1,6 @@
 package com.d.lib.album.model;
 
-import android.support.v4.util.ArraySet;
+import androidx.collection.ArraySet;
 
 import java.util.Arrays;
 import java.util.EnumSet;
