@@ -33,7 +33,9 @@ public class AlbumMediaAdapter extends CommonCursorAdapter {
 
             @Override
             public int getItemViewType(int position, Cursor item) {
-                return captureEnable && position == 0 ? ITEM_ID_CAPTURE : 0;
+                return captureEnable && position == 0
+                        ? (Media.valueOf(item).id == Media.ITEM_ID_CAPTURE ? ITEM_ID_CAPTURE : 0)
+                        : 0;
             }
 
             @Override

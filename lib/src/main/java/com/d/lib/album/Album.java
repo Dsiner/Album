@@ -74,7 +74,13 @@ public class Album {
      * @return {@link Album} for fluent API.
      */
     public Album capture(boolean enable) {
+        capture(enable, false);
+        return this;
+    }
+
+    public Album capture(boolean enable, boolean editable) {
         mBundle.putBoolean(AlbumActivity.EXTRA_BUNDLE_CAPTURE_ENABLE, enable);
+        mBundle.putBoolean(AlbumActivity.EXTRA_BUNDLE_CAPTURE_EDITABLE, editable);
         return this;
     }
 

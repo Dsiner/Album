@@ -53,6 +53,7 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
 
     public static final String EXTRA_BUNDLE = "EXTRA_BUNDLE";
     public static final String EXTRA_BUNDLE_CAPTURE_ENABLE = "EXTRA_BUNDLE_CAPTURE_ENABLE";
+    public static final String EXTRA_BUNDLE_CAPTURE_EDITABLE = "EXTRA_BUNDLE_CAPTURE_EDITABLE";
     public static final String EXTRA_BUNDLE_ORIGIN_ENABLE = "EXTRA_BUNDLE_ORIGIN_ENABLE";
     public static final String EXTRA_BUNDLE_MAX_SELECTABLE = "EXTRA_BUNDLE_MAX_SELECTABLE";
     public static final String EXTRA_BUNDLE_SPAN_COUNT = "EXTRA_BUNDLE_SPAN_COUNT";
@@ -282,17 +283,24 @@ public class AlbumActivity extends FragmentActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CAPTURE) {
             if (resultCode == Activity.RESULT_OK) {
-                Uri uri = CaptureActivity.getExtra(data);
-                AlbumEditActivity.openActivityForResult(this,
-                        uri, REQUEST_CODE_EDIT);
+                final Uri uri = CaptureActivity.getExtra(data);
+                final boolean captureEditable = mBundle.getBoolean(EXTRA_BUNDLE_CAPTURE_EDITABLE, false);
+                if (captureEditable) {
+                    AlbumEditActivity.openActivityForResult(this,
+                            uri, REQUEST_CODE_EDIT);
+                } else {
+                    final List<Media> list = new ArrayList<>();
+                    list.add(Media.valueOf(uri));
+                    onSelectedResult(list, false);
+                    confirm();
+                }
             }
 
         } else if (requestCode == REQUEST_CODE_EDIT) {
-            Uri uri = AlbumEditActivity.getExtra(data);
+            final Uri uri = AlbumEditActivity.getExtra(data);
             final List<Media> list = new ArrayList<>();
-            final boolean isOrigin = AlbumPreviewActivity.getOriginExtra(data);
             list.add(Media.valueOf(uri));
-            onSelectedResult(list, isOrigin);
+            onSelectedResult(list, false);
             confirm();
 
         } else if (requestCode == REQUEST_CODE_PREVIEW) {
