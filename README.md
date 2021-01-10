@@ -11,12 +11,16 @@ Maven:
 <dependency>
   <groupId>com.dsiner.lib</groupId>
   <artifactId>album</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
+
 or Gradle:
 ```groovy
-implementation 'com.dsiner.lib:album:1.0.0'
+// AndroidX
+implementation 'com.dsiner.lib:album:2.0.0'
+// Or Support
+implementation 'com.dsiner.lib:album:1.0.1'
 ```
 
 ## Features
@@ -44,8 +48,8 @@ Take a picture:
 Select images:
 ```java
     Album.with(this)
-            .spanCount(4)
             .capture(false)
+            .spanCount(4)
             .originEnable(true)
             .maxSelectable(9)
             .startActivityForResult(REQUEST_CODE_ALBUM);
